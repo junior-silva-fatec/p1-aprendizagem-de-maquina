@@ -1,9 +1,9 @@
 const xlsx = require('xlsx');
 const planilhas = [
-    './005-Dataset-Amostra-A.xlsx',
-    './005-Dataset-Amostra-B.xlsx',
-    './005-Dataset-Amostra-C.xlsx',
-    './005-Dataset-Amostra-D.xlsx',
+    './amostras/005-Dataset-Amostra-A.xlsx',
+    './amostras/005-Dataset-Amostra-B.xlsx',
+    './amostras/005-Dataset-Amostra-C.xlsx',
+    './amostras/005-Dataset-Amostra-D.xlsx',
 ];
 var filePath = '';
 var pontos = '';
