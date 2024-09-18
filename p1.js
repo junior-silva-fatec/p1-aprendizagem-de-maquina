@@ -1,4 +1,23 @@
 const xlsx = require('xlsx');
+const planilhas = [
+    './005-Dataset-Amostra-A.xlsx',
+    './005-Dataset-Amostra-B.xlsx',
+    './005-Dataset-Amostra-C.xlsx',
+    './005-Dataset-Amostra-D.xlsx',
+];
+var filePath = '';
+var pontos = '';
+var resultado = [];
+
+class dados {
+    constructor(nome, eqReta, r2, xM, yM) {
+        this.nome = nome;
+        this.eqReta = eqReta;
+        this.r2 = r2;
+        this.xM = xM;
+        this.yM = yM;
+    }
+}
 
 function calcularEquacaoDaReta(pontos) {
     let n = pontos.length;
@@ -59,18 +78,18 @@ function lerExcel(filePath) {
     return pontos;
 }
 
-// Caminho para o seu arquivo Excel
-const filePath = './005-Dataset-Amostra-D.xlsx';
-const pontos = lerExcel(filePath);
+for (let i=0; i<planilhas.length; i++) {
+    filePath = planilhas[i];
+    pontos = lerExcel(filePath);
 
-// Verifica se há pontos suficientes
-if (pontos.length < 2) {
-    console.error("Não há dados suficientes para calcular a equação da reta.");
-} else {
-    // Calcular a equação da reta
-    let { m, b, r2, mediaX, mediaY } = calcularEquacaoDaReta(pontos);
-    console.log(`Equação da reta: y = ${m.toFixed(2)}x + ${b.toFixed(2)}`);
-    console.log(`R²: ${r2.toFixed(4)}`);
-    console.log(`Média de x: ${mediaX.toFixed(2)}`);
-    console.log(`Média de y: ${mediaY.toFixed(2)}`);
+    if (pontos.length < 2) {
+        console.error("Não há dados suficientes para calcular a equação da reta.");
+    } else {
+        // Calcular a equação da reta
+        let { m, b, r2, mediaX, mediaY } = calcularEquacaoDaReta(pontos);        
+        dado = new dados (filePath, `y = ${m.toFixed(2)}x + ${b.toFixed(2)}`, parseFloat(r2.toFixed(4)), parseFloat(mediaX.toFixed(2)), parseFloat(mediaY.toFixed(2)));
+        resultado[i] = dado;
+    }
 }
+
+console.table(resultado);
